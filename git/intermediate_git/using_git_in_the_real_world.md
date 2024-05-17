@@ -4,7 +4,7 @@ This is a test of TOP curriculum's git workflow.
 
 ### Introduction
 
-Git basics are very simple, but it sometimes feels like a bottomless pit when you find yourself on the wrong side of a confusing error situation. It's doubly frustrating because you think that messing up or trying the wrong solution can lose data. It's actually very hard to "lose" data with Git but it can certainly be hiding somewhere you wouldn't think to look without an experienced dev poking around.
+Git basics are very straightforward, but it sometimes feels like a bottomless pit when you find yourself on the wrong side of a confusing error situation. It's doubly frustrating because you think that messing up or trying the wrong solution can lose data. It's actually very hard to "lose" data with Git but it can certainly be hiding somewhere you wouldn't think to look without an experienced dev poking around.
 
 The thing about Git is that, unless you've got a seriously impressive memory, you can't just learn it by reading about it up front... you need to do it. Find a problem you want to go back and fix, hit an error in your merge, etc. and Google the hell out of it, learning a new Git tactic in the process.
 
@@ -14,22 +14,31 @@ To help you out, come back and refer to this lesson again when you're in trouble
 
 This section contains a general overview of topics that you will learn in this lesson.
 
-- Using Git to make open source contributions
+- A reminder about commit messages.
+- Using Git to make open source contributions.
+
+### Commit messages for collaboration
+
+Before we dive into workflows, take a minute to remind yourself about good commit messages. You can check the [Commit Messages lesson](https://www.theodinproject.com/lessons/foundations-commit-messages) for a reminder. This is a good time to draw particular attention to [Conventional Commits](https://www.conventionalcommits.org), a standard for commits that is gaining more and more popularity for collaborative projects. It helps to make sure your commit message gives a clear description of its purpose to anyone reading. You may like to implement these going forwards (if you aren't already!), or at least be aware of them for when you read other repos.
 
 ### A Git workflow for open source contribution
 
-Let's say you want to contribute to the [repo that houses our curriculum content](https://github.com/TheOdinProject/curriculum/)
+Let's say you want to contribute to [our curriculum repo](https://github.com/TheOdinProject/curriculum/).
 
-How do you contribute when you do not have write access to the repository? Below is a production-ready workflow that is actually used by contributors to this website. We'll assume here that you have commented on an [open issue on our repo](https://github.com/TheOdinProject/curriculum/issues) and that it has been assigned to you.
+How do you contribute when you do not have write access to the repository? Below is a production-ready workflow that is actually used by contributors to this website. We'll assume here that you have commented on an [open issue on our repo](https://github.com/TheOdinProject/curriculum/issues) and that it has been assigned to you. If you don't have an issue assigned to you, you can still follow along with some arbitrary updates, just stop before step 3 in the **Sending your pull request** section since your changes aren't legitimate.
 
 The key players in this story will be the `upstream` (the original GitHub repository), the `origin` (your fork of that repo), and the "local" repository (your local clone of `origin`). Think of it as a happy triangle... except that "local" can only pull from `upstream`, not push.
 
 #### Initial setup
 
-1. Read [the contributing guide](https://github.com/TheOdinProject/.github/blob/main/CONTRIBUTING.md) for the project.
-2. Fork the original ("upstream") repository into your own GitHub account by using the "fork" button at the top of that repo's page on GitHub.
-3. Clone your forked repository onto your local machine using something like `git clone git@github.com:your_user_name_here/curriculum.git` (you can get the url from the little widget on the sidebar on the right of that repo's page on GitHub).
-4. Because you cloned the repository, you've already got a remote that points to `origin`, which is your fork on GitHub. You will use this to push changes back up to GitHub. You'll also want to be able to pull directly from the original repository on GitHub, which we'll call `upstream`, by setting it up as another remote. Do this by using `git remote add upstream git@github.com:TheOdinProject/curriculum.git` inside the project folder `curriculum`.
+1. Read [the TOP contributing guide](https://github.com/TheOdinProject/curriculum/blob/main/CONTRIBUTING.md) for the project.
+1. Navigate to the [curriculum repository](https://github.com/TheOdinProject/curriculum/tree/main) and fork the original ("upstream") repository into your own GitHub account by using the "fork" button at the top of that repo's page on GitHub.
+1. Clone your forked repository onto your local machine using something like `git clone git@github.com:your_user_name_here/curriculum.git` (you can get the url from the little widget on the sidebar on the right of that repo's page on GitHub).
+1. Because you cloned the repository, you've already got a remote that points to `origin`, which is your fork on GitHub. You will use this to push changes back up to GitHub. You'll also want to be able to pull directly from the original repository on GitHub, which we'll call `upstream`, by setting it up as another remote. Do this by using the git command below inside the project folder `curriculum`:
+
+```bash
+git remote add upstream git@github.com:TheOdinProject/curriculum.git
+```
 
 #### Ongoing workflow
 

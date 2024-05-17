@@ -1,6 +1,6 @@
 ### Introduction
 
-This is a simple follow along lesson to show you how Action Cable can be used to enhance an application to give it real time features. We won't explain everything in detail, as much of the setup instructions should be familiar to you but will take the time around the Action Cable specific content to explain things a little more.
+This is a basic follow along lesson to show you how Action Cable can be used to enhance an application to give it real time features. We won't explain everything in detail, as much of the setup instructions should be familiar to you but will take the time around the Action Cable specific content to explain things a little more.
 
 The app we'll build will be in two stages. The first stage will be an app for sending messages only viewable to those currently logged in. We'll then build on it in the second stage to save the messages so that they are also viewable to anyone who logs in in the future.
 
@@ -38,7 +38,7 @@ Generate our user model and migrate
 bundle exec rails generate devise user && bundle exec rails db:migrate
 ~~~
 
-To keep things simple we'll just create a couple of users in `db/seeds.rb`
+To get things started we'll just create a couple of users in `db/seeds.rb`
 
 ~~~ruby
 User.create(email: 'humblebragger@humblebrag.com', password: 'humblebaby')
@@ -51,7 +51,7 @@ You can set the user info to whatever you want. Then run the seed file
 bundle exec rails db:seed
 ~~~
 
-Let's create a simple one page app, users will land on our homepage, get redirected to log in, and then directed back to the homepage. First let's create a controller. We'll just call it `hangouts` as our users will hangout there doing absolutely nothing.
+Let's create a basic one page app, users will land on our homepage, get redirected to log in, and then directed back to the homepage. First let's create a controller. We'll just call it `hangouts` as our users will hangout there doing absolutely nothing.
 
 ~~~bash
 bundle exec rails generate controller hangouts index
@@ -69,10 +69,12 @@ Let's also protect our app from unauthorised viewing by adding the following to 
 before_action :authenticate_user!
 ~~~
 
-Lastly in the initial setup, let's add a little bit of styling with the Bulma gem and a navbar just with some login and logout functionality.
+Lastly in the initial setup, let's add a little bit of styling with the Bulma gem and a navbar just with some login and logout functionality. We'll also install dartsass-rails so that Bulma works appropriately. (Note: If you receive this error - `LoadError: cannot load such file -- sassc` run `rails tmp:clear` and try restarting the server)
 
 ~~~bash
 bundle add bulma-rails
+./bin/bundle add dartsass-rails
+./bin/rails dartsass:install
 ~~~
 
 Next, and just to save some time you need to go to the `app/assets/stylesheets/` directory and change `application.css` to `application.scss`. Bulma-rails uses scss and although there are other ways to handle it this is the easiest.
@@ -244,7 +246,7 @@ document.addEventListener("turbo:load", () => {
 
 Firstly, since JS assets are loaded in the head of our html, the Javascript files will be evaluated often before the DOM has rendered, so we first want to make sure the DOM has been created. We do this using the `turbo:load` event listener. Then we want to check if we are on a page with the form. It might seem obvious since we only have one page but you can never be too careful...
 
-Next if we are on a page with the form we add an event listener to it on its submit property. When the form is submitted we first prevent the default submit from happening. This stops the page rerendering. Then we grab the value from our input field and check it isn't an empty string. If it is we simply return and do nothing. If it isn't, then we create a JS object with a key named `body` which holds the value of our messageInput. If you're wondering why we did this under its own object instead of just sending `message: messageInput` in the send method it's because often you'll submit more than one parameter, and when we do create a Message Model this is similar to how it will be returned from a controller.
+Next if we are on a page with the form we add an event listener to it on its submit property. When the form is submitted we first prevent the default submit from happening. This stops the page rerendering. Then we grab the value from our input field and check it isn't an empty string. If it is, then we return and do nothing. If it isn't, then we create a JS object with a key named `body` which holds the value of our messageInput. If you're wondering why we did this under its own object instead of just sending `message: messageInput` in the send method it's because often you'll submit more than one parameter, and when we do create a Message Model this is similar to how it will be returned from a controller.
 
 The last part of our code is the important bit. We call `send` on `messageChannel` and pass it an object with a key of `message` and a value of the message object we create earlier. You can see we create `messageChannel` in this line `const messageChannel = consumer.subscriptions.create("MessageChannel", {`. So it holds a reference to the channel created for message. When we call `send` on it, Rails knows to route it to the message_channel on the server side. If you save this file and refresh your browser if you have a rails server running you should be able to submit a message without the page refreshing. Check the server logs and you should see something like
 
@@ -262,7 +264,7 @@ def receive(data)
 end
 ~~~
 
-Rails handles routing any incoming message from a client to the `receive` method on the class representing the channel through which the message was sent. In our `receive` method we simply broadcast the message right back to all subscribers of the `message` stream. Sending it right back might seem strange but it's how we can ensure a message created on one client gets sent to all other clients subscribed to the channel without them having to refresh their browser. This is one of the main benefits of WebSockets.
+Rails handles routing any incoming message from a client to the `receive` method on the class representing the channel through which the message was sent. In our `receive` method we broadcast the message right back to all subscribers of the `message` stream. Sending it right back might seem strange but it's how we can ensure a message created on one client gets sent to all other clients subscribed to the channel without them having to refresh their browser. This is one of the main benefits of WebSockets.
 
 When data is broadcast to subscriber it goes right back to the client side to the object handling the connection to the websocket channel. In this case it's our `messageChannel` that references the connection. Data received here goes, funnily enough, to the `received` function of our messageChannel object in `message_channel.js`. Inside `received` we need to use the data received to create a template for the message so we can display it and we then want to append it to our `#message-display` div. In order to create a template we can use Javascript string template literals. Underneath the `received` function add a new function called `template` that will receive the data and return an html string. The template does use some Bulma stylings so don't worry about the actual markup. It could be any html.
 
@@ -340,7 +342,7 @@ And then
 bundle exec rails db:migrate
 ~~~
 
-Next we need a controller to for our messages. We only need a create action since we aren't doing anything else with them
+Next we need a controller for our messages. We only need a create action since we aren't doing anything else with them
 
 ~~~bash
 bundle exec rails generate controller messages
@@ -366,7 +368,7 @@ def index
 end
 ~~~
 
-Then in our hangouts index view we can change the form to use `form_with`. You don't need to change anything else, just remove the form inside of the div with the `message-form` id
+Then in our hangouts index view we can change the form to use `form_with`. You don't need to change anything else, just replace the form inside of the div with the `message-form` id with the following form:
 
 ~~~html
 <%= form_with model: @message, local: false do |f| %>

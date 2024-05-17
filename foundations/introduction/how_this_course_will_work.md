@@ -1,6 +1,6 @@
 ### Introduction
 
-The Odin Project is an open-source community dedicated to providing the best information sources to take you from zero to a full-stack developer.  More information can be found at The Odin Project's [about page](https://www.theodinproject.com/about).
+The Odin Project is an open-source community dedicated to providing the best information sources to take you from zero to a full-stack developer.
 
 In this unit, we'll learn about how the web works and start thinking about the basics of computer and web programming.
 
@@ -8,7 +8,7 @@ Each of the following sections and lessons represents essential baseline knowled
 
 We will start by getting familiar with the internet and your own computer.  Next, we'll work on setting up a development environment and learning about Git and GitHub. Then, we'll go over the basics of front-end technologies like HTML, CSS, and Javascript before stepping into the back end with a brief foray that covers the basic concepts of back-end technologies.
 
-By the end of this unit, you should not only understand how the web works but also be able to identify and differentiate between all the technologies that you will use to build your own web applications.  You will be able to build a simple webpage, style it, and add minor elements of interactivity while working comfortably from the command line.
+By the end of this unit, you should not only understand how the web works but also be able to identify and differentiate between all the technologies that you will use to build your own web applications. You will be able to build a basic webpage, style it, and add minor elements of interactivity while working comfortably from the command line.
 
 This section intentionally covers a very broad range of topics. It's silly to go diving straight into server-side programming without having a context for what it is and why it's useful (and why you should learn it!).
 
@@ -20,7 +20,22 @@ Most lessons will contain questions that you should be able to answer before mov
 
 Try not to think of The Odin Project, or programming, as a class in school. It's not material you learn all at once to take a test, and then pass or fail. You can think of it as a snowball. You, yourself, are a snowball. You're rolling down a hill full of snow; the further you roll, the more snow will stick to you. Sure, snow will also fall off you, and you'll forget things often, but that's just part of the process. Don't be scared if you get to a project and you feel like you haven't retained or memorized anything. That's natural and happens to everyone. The information will come back to you as you start solving your problems one at a time, relying on Google and the Odin Community for help.
 
-### A note about language
+### A note about tools
+
+We often get questions about why this course does not cover a language or a tool.
+
+The truth is that once you complete this curriculum you will **not need** a course like this or any sort of "tutorial". The Odin Project's goal is not to teach you any standalone skills and it is not a tutorial. The main idea is to teach you the *why* and change the way you think.
+
+One of the most difficult parts about this course is adopting the right mindset. Another one, the bigger one, is learning the core ideas of programming. It isn't just about coding, it is about problem-solving, asking the right questions, and doing enough research. Getting into a position where you are comfortable with the skills will mean that you will also be comfortable at expanding your skill-set. Once you have a solid *base*, it will be simpler to expand upon it. This is exactly what The Odin Project is about: developing these *skills*.
+
+After completing the course you will be in a position where you can simply jump straight into the documentation for anything you are trying to learn.
+Reading the documentation is the best way to learn any tooling. But it takes skill to get good at it. Many people feel intimidated by the technical jargon, which is understandable. People who write documentations usually assume a background in programming. This is exactly why we give you plenty of material to read on your own.
+
+The skills you will gain from completing The Odin Project will be the foundation that you will be building upon for years and decades to come. If you come out of the course thinking that you need another course like this one to learn something like Python, then you either don't believe in yourself or you haven't taken away the important ideas that are covered in this course.
+
+The skills you learn here are transferable. Once you know the *idea* and that it is *possible* to do something, actually finding out how to do that thing becomes significantly easier and is simply a Google search away most of the times.
+
+### A note about human language
 
 The Odin Project attracts people from all over the world who aspire to learn how to become developers. Please be aware that this curriculum is written in English and maintained by English speakers who are not able or expected to translate it for you. As you develop into a programmer, you will find that the world you are entering into is firmly rooted in the English language. This means that the syntax of your programming language, the documentation that teaches you how to use it, and the majority of the people in the community are all expecting to communicate with you in English.
 
@@ -44,6 +59,15 @@ As you move forward in the curriculum, each portion is built on everything that 
 Additional resources are the only thing that is considered optional unless explicitly stated. These are here in case you feel like you need or want to dive deeper into a topic to get a better understanding. 
 
 **DO NOT SKIP ANYTHING!** 
+
+### Assignment
+
+<div class="lesson-content__panel" markdown="1">
+ 
+1. Learn more about The Odin Project by reading its [about page](https://www.theodinproject.com/about).
+1. Check out the [frequently asked questions](https://www.theodinproject.com/faq) section.
+
+</div>
 
 ### Additional resources
 
